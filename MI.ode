@@ -1,0 +1,93 @@
+begin model MI
+ begin parameters
+  k1 = 1.0
+  k2 = 1.0
+  k3 = 1.0
+  k4 = 1.0
+  
+  p1 = 1.0
+  p2 = 1.0
+  p3 = 1.0
+  p4 = 1.0
+ end parameters
+ begin init
+  Y0 = 2000
+  Z0 = 1000
+  Y1
+  Z1  
+  Y2 = 1000
+  Z2 = 2000
+ end init
+ begin partition
+ {Y0,Z2}
+ end partition
+ begin reactions
+  Y0 + Z0 -> Z0 + Y1 , k1
+  Z0 + Y1 -> Z0 + Y2 , k2
+  Y0 + Y2 -> Y0 + Y1 , k3
+  Y0 + Y1 -> 2*Y0 , k4
+  Z0 + Z2 -> Z0 + Z1 , k1
+  Z0 + Z1 -> 2*Z0 , k2
+  Y0 + Z0 -> Y0 + Z1 , k3
+  Y0 + Z1 -> Y0 + Z2 , k4
+ end reactions
+ simulateODE(tEnd=0.005,csvFile="mi.csv")
+//reduceBE(reducedFile="red/MIBE.ode",prePartition=USER)
+// reduceBE(reducedFile="red/MIBEPrep.ode",prePartition=USER)
+ //onTheFlyBR(Q={(Y0,Z2)},Qbar=NONE)
+ //onTheFlyBR(Q={(Y0,Z2)},Qbar={(Y0,Y1),(Y1,Y0),(Y0,Y2),(Y2,Y0),(Y1,Y2),(Y2,Y1)})
+ 
+ //onTheFlyBR(Q={(Y0,Z2)},Qbar=NONE)
+ 
+// reduceFE(reducedFile="reductions/MIFE.ode")
+// //reduceFE(prePartition=USER)
+// onTheFlyFR(Q={(Y0,Z2)},Qbar=NONE)
+// //(Y0,Y0), 
+// onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y0,Y0)})
+////(Y0,Y1), 
+// onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y0,Y1)})
+////(Z0,Z0),  
+// onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z0,Z0)})
+////(Z0,Y1),
+// onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z0,Y1)})
+// //(Z0,Z1), 
+// onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z0,Z1)})
+////(Y1,Y0), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y1,Y0)})
+////(Y1,Y1), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y1,Y1)})
+////(Y1,Y2), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y1,Y2)})
+////(Y2,Y1), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y2,Y1)})
+////(Y2,Y2), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y2,Y2)})
+////(Y2,Z1), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Y2,Z1)})
+////(Z2,Z0), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z2,Y0)})
+////(Z2,Z2), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z2,Z2)})
+////(Z2,Z1), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z2,Z1)})
+////(Z1,Z0), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z1,Z0)})
+////(Z1,Y2), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z1,Y2)})
+////(Z1,Z2), 
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z1,Z2)})
+////(Z1,Z1)
+//onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z1,Z1)})
+
+ 
+ //onTheFlyFR(Q={(Y0,Z2)},Qbar={(Z1,Z2)})
+ 
+ //onTheFlyFR(Q={(Y0,Z2)},Qbar=NONE, upTo=ReflexivitySymmetry)
+ 
+ //onTheFlyFR(Q={(Y0,Z2)},Qbar=NONE,upTo=Equivalence)
+ //(Y0,Y1), (Y0,Z2), (Z0,Y1), (Z0,Z1), (Y1,Y0), (Y1,Z0), (Y1,Y2), (Y2,Y1), (Y2,Z1), (Z2,Z0), (Z2,Z1), (Z1,Z0), (Z1,Y2), (Z1,Z2)
+
+//generateCME(fileOut="MIcme22_11.ode") 
+//generateCME(fileOut="MIcme44_22.ode")
+end model
+

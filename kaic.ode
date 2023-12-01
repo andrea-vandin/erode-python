@@ -1,0 +1,50 @@
+begin model kaic
+begin parameters
+  k1 = 0.5
+  k2 = 1
+  p1 = 1.0
+  p2 = 1.0
+  p3 = 1.0
+  p4 = 1.0
+ end parameters
+ begin init
+  OO = 2
+  PP = 2
+  OP
+  PO
+ end init
+ begin partition
+ {OO},{PP}
+ end partition
+ begin reactions
+  OO + PP -> PP + OP , k1
+  PP + OP -> 2*PP , k2
+  OO + PP -> OO + OP , k1
+  OO + OP -> 2*OO , k2
+  OO + PP -> PP + PO , k1
+  PP + PO -> 2*PP , k2
+  OO + PP -> OO + PO , k1
+  OO + PO -> 2*OO , k2
+ end reactions
+begin views
+vOO = OO
+vOP = OP+PO
+VPP = PP
+end views
+//write(fileOut="fileOut")
+
+//generateCME(fileOut="kaicCME2_2.ode")
+//generateCME(fileOut="kaicCME4_2.ode")
+
+//simulateODE(tEnd=1,viewPlot=VIEWS)
+//simulateODE(tEnd=1,viewPlot=VARS)
+
+// reduceFE(reducedFile="reductions/kaicFE.ode")
+//reduceFE(reducedFile="reductions/kaicFEprep.ode",prePartition=USER)
+//reduceBE(reducedFile="reductions/kaicBEPrep2.ode",prePartition=USER,reductionAlgorithm=OLD)
+ //onTheFlyFR(query={(OP,PO)},Qbar=NONE)
+// onTheFlyFR(query={(OP,PO)},Qbar={(PO,OP)})
+ 
+// onTheFlyFR(query={(OP,PO)},Qbar={(OO,PP),(PP,OO)})
+
+ end model
