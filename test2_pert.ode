@@ -1,0 +1,21 @@
+begin model test2_pert
+ begin parameters
+ p=1.1
+ end parameters
+ begin init
+  S0
+  S1
+  S2
+ end init
+ begin partition
+  {S0}
+ end partition
+ begin reactions
+  //S1 -> S0 + S1 , 1
+  //S2 -> S0 + S2 , 1
+  S0 -> S0 + S1  , 1
+  S0 -> S0 + S2 , p
+ end reactions
+reduceBE(reducedFile="aaa.ode")
+end model
+

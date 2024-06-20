@@ -1,0 +1,20 @@
+begin model test2_pert2
+begin parameters
+p1=1.0
+p2=1.1
+end parameters
+ begin init
+  //S0
+  S1
+  S2
+ end init
+ begin reactions
+  S1 -> S1 + S1 , p1
+  S2 -> S2 + S2 , p2
+ end reactions
+ reduceBE(reducedFile="aaa2.ode")
+ approximateBDE(epsilon=0.1,matlabScript="matalbScript_ode2.m",paramsToPerturb=ALL,
+ 	fastDegreeOne=false)
+
+end model
+
