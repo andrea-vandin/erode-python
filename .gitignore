@@ -27791,3 +27791,6 @@ env_pdai_2024/share/jupyter/kernels/python3/logo-svg.svg
 env_pdai_2024/share/man/man1/ipython.1
 env_pdai_2024/share/man/man1/ttx.1
 notesQP.txt
+kaic.cdat
+kaic.cdat.vdat
+.ipynb_checkpoints/kaic.csv-checkpoint.cdat
