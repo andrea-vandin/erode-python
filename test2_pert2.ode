@@ -12,9 +12,8 @@ end parameters
   S1 -> S1 + S1 , p1
   S2 -> S2 + S2 , p2
  end reactions
- reduceBE(reducedFile="aaa2.ode")
- approximateBDE(epsilon=0.1,matlabScript="matalbScript_ode2.m",paramsToPerturb=ALL,
+ //reduceBE(reducedFile="aaa2.ode")
+ approximateBDE(epsilon=0.1,matlabScript="matalbScript_ode2.m",paramsToPerturb=NONE,
  	fastDegreeOne=false)
-
 end model
 
