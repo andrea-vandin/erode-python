@@ -1,0 +1,33 @@
+begin model guisepfde2
+ begin parameters
+  a = -4.0
+  b = 1.0
+  c = 1.0
+  f = 1.99
+  l = -1.0
+  g = 2.01
+  h = -1.0
+ end parameters
+ begin init
+  x1
+  x2
+  x3
+ end init
+ begin partition
+  {x1}
+ end partition
+ begin reactions
+  x1 -> x1 + x2 , f
+  x1 -> x1 + x3 , g
+  x1 -> 2*x1 , a
+  x2 -> x1 + x2 , b
+  x2 -> 2*x2 , l
+  x3 -> x1 + x3 , c
+  x3 -> 2*x3 , h
+ end reactions
+//approximateFDE(epsilon=0.02,prePartition=USER,matlabScript="guisfde2ep0p022.m",paramsToPerturb=ALL)
+approximateBDE(epsilon=0.02,prePartition=USER,matlabScript="guisbde2ep0p02.m",
+	paramsToPerturb=ALL,fastDegreeOne=false
+)
+end model
+

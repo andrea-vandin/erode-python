@@ -1,0 +1,24 @@
+begin model checkPyth
+ begin parameters
+ r=1.1
+ end parameters
+ begin init
+  S0
+  S1
+  S2
+ end init
+ begin partition
+  {S0}
+ end partition
+ begin reactions
+  S0 -> S0 + S1  , r
+  S0 -> S0 + S2 , 1
+ end reactions
+ 
+ //reduceFE(prePartition=USER)
+ reduceBE(prePartition=USER)
+ 
+//approximateFDE(epsilon=0.1,prePartition=USER,matlabScript="checkpythep0p1.m",paramsToPerturb=ALL)
+approximateBDE(epsilon=0.1,prePartition=USER,matlabScript="checkpythep0p1bdef.m",paramsToPerturb=ALL,fastDegreeOne=false)
+end model
+
